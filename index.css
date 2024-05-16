@@ -1,0 +1,405 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--light-blue-color);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+
+  -webkit-animation: AnimationName 20s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  -o-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 48%;
+  }
+  50% {
+    background-position: 100% 53%;
+  }
+  100% {
+    background-position: 0% 48%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 48%;
+  }
+  50% {
+    background-position: 100% 53%;
+  }
+  100% {
+    background-position: 0% 48%;
+  }
+}
+@-o-keyframes AnimationName {
+  0% {
+    background-position: 0% 48%;
+  }
+  50% {
+    background-position: 100% 53%;
+  }
+  100% {
+    background-position: 0% 48%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 48%;
+  }
+  50% {
+    background-position: 100% 53%;
+  }
+  100% {
+    background-position: 0% 48%;
+  }
+}
+
+:root {
+  --padding: 5px;
+  --container-height: 850px;
+  /* --container-width: calc(2 / 3 * var(--container-height)); */
+  --container-width: calc(
+    var(--tilesContainer-width) + 2 * var(--padding) + 2 * var(--border-width)
+  ); /* marimea containerului de tiles + padding stanga-dreapta + border-width */
+  --option-width: calc(0.4 * var(--container-height));
+  --icon-size: 30px;
+  --grey-color: rgb(172, 172, 172);
+  --dark-blue-color: #000080;
+  --light-blue-color: #1084d0;
+  --border-color: rgb(207, 207, 207);
+  --tilesContainer-width: calc(
+    var(--tile-scale) * var(--icon-size) + 2 * var(--padding) + 2 *
+      var(--border-width)
+  );
+  --tile-scale: 1.5;
+  --border-width: 5px;
+  --nrOfTiles: 9;
+}
+
+.border {
+  border-style: outset;
+  border-color: var(--border-color);
+  border-width: var(--border-width);
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameContainer {
+  width: min(var(--container-width), max-content);
+  min-width: 350px;
+  min-height: max-content;
+  /* aspect-ratio: 3 / 2;
+  width: auto; */
+  height: min(var(--container-height), max-content);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: var(--grey-color);
+  padding: var(--padding);
+  /* position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%; */
+}
+
+.upperMenu {
+  --height: 40px;
+  height: var(--height);
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    var(--dark-blue-color),
+    var(--light-blue-color)
+  );
+  padding: var(--padding);
+  justify-content: space-between;
+}
+.upperMenu .upperMenuImage {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: var(--padding);
+}
+.upperMenu .gameHeader {
+  letter-spacing: 2px;
+  font-size: 20px;
+  color: white;
+}
+
+.upperMenu .cellDesign {
+  background-image: url(./assets/images/imageDesign2/tile/Hover.png);
+
+  background-position: center;
+  background-size: cover;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  align-items: center;
+  transition: 100ms;
+}
+.upperMenu .cellDesign:last-child {
+  background-image: url(./assets/images/imageDesign2/tile/Default.png);
+}
+.upperMenu .cellDesign:hover {
+  background-image: url(./assets/images/imageDesign2/tile/Hover.png);
+}
+
+.upperMenu .cellDesign i {
+  font-weight: bold;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+.upperMenu > .appMenu {
+  gap: var(--padding);
+}
+
+/* Meniu de joc */
+.gameMenu {
+  justify-content: flex-start;
+  padding: var(--padding);
+  gap: var(--padding);
+}
+.gameOption {
+  position: relative;
+  transition: 100ms;
+  border-style: inset;
+  border-color: transparent;
+  border-width: 3px;
+  padding: var(--padding);
+}
+.gameOption .optionText {
+  font-size: 18px;
+  font-weight: normal;
+}
+.gameOption:hover {
+  border-color: var(--border-color);
+}
+.gameOption:hover .gameOptionExtended {
+  display: block;
+}
+.gameOptionExtended {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  top: calc(100% + var(--padding) / 1.5);
+  left: calc(0% - var(--padding));
+}
+.gameOptionExtended .group {
+  width: var(--option-width);
+  padding: var(--padding) 0;
+  background-color: var(--grey-color);
+  padding: var(--padding);
+  gap: var(--padding);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.gameOptionExtended .group .option {
+  padding: var(--padding) 0;
+  transition: 100ms;
+  justify-content: flex-start;
+  width: 100%;
+  cursor: pointer;
+}
+.gameOptionExtended .group .option:hover {
+  background-color: var(--dark-blue-color);
+  color: white;
+}
+.gameOptionExtended .group a {
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+.gameOptionExtended .group .text {
+  font-weight: normal;
+  font-size: 16px;
+  flex-grow: 1;
+}
+.gameOptionExtended .group .text + span {
+  flex-grow: 1;
+}
+.gameOptionExtended .group .mark {
+  width: var(--icon-size);
+  /* height: var(--icon-size); */
+  height: 100%;
+}
+
+.timerContainer {
+  height: max(calc(0.15 * var(--container-height)), max-content);
+  background-color: var(--grey-color);
+  border-width: 5px;
+  justify-content: space-between;
+  /* justify-content: space-around; */
+  padding: calc(2 * var(--padding));
+  gap: calc(2 * var(--padding));
+}
+.timerContainer .bombDigit,
+.timerContainer .timerDigit {
+  height: max(calc(0.09 * var(--container-height)), calc(2 * var(--icon-size)));
+}
+.timerContainer .numberOfBombs,
+.timerContainer .timer {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: var(--padding);
+  /* padding: calc(2 * var(--padding)); */
+  gap: var(--padding);
+}
+.timerContainer .SmileyFace {
+  width: calc(2 * var(--icon-size));
+  height: calc(2 * var(--icon-size));
+  background-image: url("./assets/images/imageDesign2/SmileyFace.png");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: 100ms;
+}
+.timerContainer .SmileyFace.gameWon {
+  background-image: url("./assets/images/imageDesign2/SmileyFaceWithGlasses.png");
+}
+.timerContainer .SmileyFace.gameLost {
+  background-image: url("./assets/images/imageDesign2/DeadSmileyFace.png");
+}
+.timerContainer .SmileyFace:hover {
+  transform: scale(1.05);
+}
+.tilesContainer {
+  align-self: center;
+  width: var(--tilesContainer-width);
+  height: min(var(--tilesContainer-width), max-content);
+  background-color: var(--grey-color);
+  margin-top: calc(2 * var(--padding));
+  padding: var(--padding);
+  display: grid;
+  grid-template-columns: repeat(
+    var(--nrOfTiles),
+    calc(var(--tile-scale) * var(--icon-size))
+  );
+  grid-template-rows: repeat(
+    var(--nrOfTiles),
+    calc(var(--tile-scale) * var(--icon-size))
+  );
+}
+.tilesContainer .tile {
+  width: calc(var(--tile-scale) * var(--icon-size));
+  height: calc(var(--tile-scale) * var(--icon-size));
+  background-color: var(--grey-color);
+  background-image: url("./assets/images/imageDesign2/tile/Default.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: 100ms;
+}
+.tilesContainer .tile:hover {
+  background-image: url("./assets/images/imageDesign2/tile/Hover.png");
+}
+.tilesContainer .tile.addFlag {
+  background-image: url("./assets/images/imageDesign2/tile/Flag.png");
+}
+.tilesContainer .tile.addRedFlag {
+  background-image: url("./assets/images/imageDesign2/tile/RedFlag.png");
+}
+.tilesContainer .tile.bombExploded {
+  background-image: url("./assets/images/imageDesign2/bombAndNumbers/Mine.png");
+}
+.tilesContainer .tile.bomb {
+  background-image: url("./assets/images/imageDesign2/bombAndNumbers/Overlay\ Mine.png");
+}
+/* Meniu Custom */
+.selectDifficultyCustomMenu {
+  display: none;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 600px;
+  aspect-ratio: 2 / 1;
+  height: max-content;
+  position: absolute;
+  background-color: var(--grey-color);
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.selectDifficultyCustomMenu.show {
+  display: flex;
+}
+.selectDifficultyCustomMenu .selectionMenu {
+  padding: calc(3 * var(--padding));
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: calc(3 * var(--padding));
+}
+.selectDifficultyCustomMenu .selectionMenu label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--padding);
+}
+.selectDifficultyCustomMenu .selectionMenu h3 {
+  font-size: 18px;
+  padding: calc(2 * var(--padding));
+}
+.selectDifficultyCustomMenu .selectionMenu button,
+.selectDifficultyCustomMenu .selectionMenu .errorMsg {
+  align-self: center;
+  width: 80%;
+  aspect-ratio: 10 / 1;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+.selectDifficultyCustomMenu .selectionMenu .errorMsg {
+  width: max-content;
+  color: rgb(194, 4, 4);
+  display: none;
+}
+.selectDifficultyCustomMenu .selectionMenu .errorMsg.show {
+  display: block;
+}
+.selectDifficultyCustomMenu .selectionMenu label div {
+  font-size: 20px;
+  width: 50%;
+}
+.selectDifficultyCustomMenu .selectionMenu label .bombImputParent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.selectDifficultyCustomMenu .selectionMenu label .bombImputParent span {
+  color: rgb(194, 4, 4);
+  font-size: 18px;
+  font-weight: bold;
+}
+.selectDifficultyCustomMenu .selectionMenu label input {
+  font-size: 20px;
+  flex-grow: 1;
+  padding: var(--padding);
+}
